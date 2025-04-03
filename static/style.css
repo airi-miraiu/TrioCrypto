@@ -1,0 +1,81 @@
+body {
+    background: linear-gradient(45deg, #1f1f1f, #4b4b4b);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-layout .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .text-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .button {
+    background-color: #75ffe3c4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #f9bcffd5;
+  }
+  
+  .output-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(255, 185, 238, 0.5);
+    word-wrap: break-word;
+  }
+  
+  .copy-effect {
+    animation: copy-animation 0.5s ease forwards;
+  }
+  
+  @keyframes copy-animation {
+    0% {
+      background-color: #f6a9ff;
+      color: #000;
+    }
+    100% {
+      background-color: rgba(255, 176, 250, 0.7);
+      color: white;
+    }
+  }
+  

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Algorithm Encryption Tool</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script>
+    function copyToClipboard(content, button) {
+      navigator.clipboard.writeText(content).then(function() {
+        button.textContent = 'Copied';
+        button.classList.add('copy-effect');
+      }).catch(function(error) {
+        button.textContent = 'Failed to copy';
+        button.classList.add('error-button');
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Multi-Algorithm Encryption/Decryption Tool</h1>
+    <form action="/" method="post" class="form-layout">
+      <div class="input-group">
+        <label for="algorithm">Select Algorithm:</label>
+        <select name="algorithm" id="algorithm">
+          <option value="AES">AES</option>
+            <option value="3DES">3DES</option>
+            <option value="Blowfish">Blowfish</option>
+            <option value="RSA">RSA</option>
+            <option value="ChaCha20">ChaCha20</option>
+            <option value="XOR">XOR Cipher</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <textarea class="text-input" name="message" placeholder="Enter your message here (for encryption)"></textarea>
+      </div>
+      <div class="input-group">
+        <textarea class="text-input" name="ciphertext" placeholder="Enter ciphertext here (for decryption)"></textarea>
+      </div>
+      <div class="input-group">
+        <textarea class="text-input" name="key" placeholder="Enter key here (for decryption)"></textarea>
+      </div>
+      <div class="button-group">
+        <input class="button" type="submit" name="operation" value="Encrypt">
+        <input class="button" type="submit" name="operation" value="Decrypt">
+      </div>
+    </form>
+    <div class="output-messages">
+      {% if result.ciphertext %}
+      <div class="message-box">
+        <p>Encrypted Ciphertext: <span id="ciphertextContent">{{ result.ciphertext }}</span></p>
+        <button class="button" onclick="copyToClipboard(document.getElementById('ciphertextContent').innerText, this)">Copy Ciphertext</button>
+      </div>
+      {% endif %}
+      {% if result.key %}
+      <div class="message-box">
+        <p>Key: <span id="keyContent">{{ result.key }}</span></p>
+        <button class="button" onclick="copyToClipboard(document.getElementById('keyContent').innerText, this)">Copy Key</button>
+      </div>
+      {% endif %}
+      {% if result.private_key %}
+      <div class="message-box">
+        <p>Private Key: <span id="privateKeyContent">{{ result.private_key }}</span></p>
+        <button class="button" onclick="copyToClipboard(document.getElementById('privateKeyContent').innerText, this)">Copy Private Key</button>
+      </div>
+      {% endif %}
+      {% if result.public_key %}
+      <div class="message-box">
+        <p>Public Key: <span id="publicKeyContent">{{ result.public_key }}</span></p>
+        <button class="button" onclick="copyToClipboard(document.getElementById('publicKeyContent').innerText, this)">Copy Public Key</button>
+      </div>
+      {% endif %}
+      {% if result.plaintext %}
+      <div class="message-box">
+        <p>Decrypted Message: <span id="plaintextContent">{{ result.plaintext }}</span></p>
+        <button class="button" onclick="copyToClipboard(document.getElementById('plaintextContent').innerText, this)">Copy Message</button>
+      </div>
+      {% endif %}
+      {% if result.error %}
+      <div class="message-box">
+        <p>Error: {{ result.error }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
